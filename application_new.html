@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新規申請 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="application-new-container">
+    <h2>新規申請</h2>
+    <form id="applicationNewForm">
+      <table class="application-new-table">
+        <tr>
+          <td>申請書類</td>
+          <td>
+            <input type="text" id="docTypeInput" style="width:120px;">
+            <select id="docTypeSelect">
+              <option value="休暇届">休暇届</option>
+              <option value="経費精算">経費精算</option>
+              <option value="備品購入">備品購入</option>
+            </select>
+            <button type="button" class="post-btn" id="templateDownloadBtn">雛型ダウンロード</button>
+          </td>
+        </tr>
+        <tr>
+          <td>タイトル</td>
+          <td><input type="text" id="titleInput" style="width:90%;"></td>
+        </tr>
+        <tr>
+          <td>申請ファイル</td>
+          <td>
+            <span>申請ファイル</span> <span id="fileNameLabel">申請ファイル</span> <span id="fileDeleteBtn" class="attach-delete">×</span>
+            <button type="button" class="post-btn" id="fileUploadBtn">申請アップロード</button>
+            <input type="file" id="fileInput" style="display:none;">
+          </td>
+        </tr>
+        <tr>
+          <td>連絡事項</td>
+          <td><textarea id="contactInput" rows="3" style="width:90%;"></textarea></td>
+        </tr>
+      </table>
+      <div class="application-new-buttons">
+        <button type="submit" class="post-btn">申請</button>
+        <button type="button" class="post-btn" id="backBtn">申請一覧に戻る</button>
+      </div>
+    </form>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="application_new.js"></script>
+</body>
+</html> 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>申請一覧 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="user-header">
+    <span class="header-title">申請一覧</span>
+    <span class="header-userinfo">ニックネーム　権限</span>
+  </header>
+  <div class="mypage-container">
+    <aside class="mypage-sidebar">
+      <div class="profile-box">
+        <div class="image-box"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="プロフィール画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+        <div class="nickname">山田 太郎</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-label">情報</div>
+        <div>営業部</div>
+        <div>主任</div>
+        <div>03-1234-5678</div>
+      </div>
+      <div class="sidebar-menu">
+        <a href="mypage.html" style="text-decoration:none;color:inherit;"><div>マイページ</div></a>
+        <a href="board.html" style="text-decoration:none;color:inherit;"><div>掲示板</div></a>
+        <a href="application_list.html" style="text-decoration:none;color:inherit;"><div>書類申請</div></a>
+        <div>ユーザー検索</div>
+        <div>E-ラーニング</div>
+        <div>ユーザー管理</div>
+      </div>
+    </aside>
+    <main class="board-main">
+      <div class="application-list-container">
+        <h2>申請一覧</h2>
+        <div class="application-list-header">
+          <label>状態
+            <select id="statusSelect">
+              <option value="未承認">未承認</option>
+              <option value="承認中">承認中</option>
+              <option value="承認済">承認済</option>
+            </select>
+          </label>
+          <button id="newApplicationBtn" class="post-btn">新規申請</button>
+        </div>
+        <div class="application-list-info">
+          <span>総件数 <span id="totalCount">0</span>件</span>
+          <span style="margin-left:40px;">表示件数
+            <select id="displayCountSelect">
+              <option value="5">5件</option>
+              <option value="10">10件</option>
+              <option value="20">20件</option>
+            </select>
+          </span>
+        </div>
+        <div class="application-table-area">
+          <table class="application-table">
+            <thead>
+              <tr>
+                <th>状態</th><th>申請ID</th><th>申請種類</th><th>タイトル</th><th>申請日</th><th>承認日</th><th>連絡事項</th>
+              </tr>
+            </thead>
+            <tbody id="applicationTableBody">
+              <!-- JSでダミーデータを挿入 -->
+            </tbody>
+          </table>
+        </div>
+        <div class="application-pagination">
+          <button id="prevPageBtn">&#9664;</button>
+          <select id="pageSelect"></select>
+          <button id="nextPageBtn">&#9654;</button>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="application_list.js"></script>
+</body>
+</html> 
