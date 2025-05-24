@@ -79,11 +79,30 @@
       <h2 style="text-align:center; color:#5497d1;">ユーザー編集</h2>
       <form id="userEditForm">
         <table style="width:100%;">
-          <tr><td>氏名</td><td><input type="text" id="editName" style="width:90%"></td></tr>
+          <tr>
+            <td>権限</td>
+            <td>
+              <label><input type="radio" name="editRole" value="管理"> 管理</label>
+              <label style="margin-left:30px;"><input type="radio" name="editRole" value="一般"> 一般</label>
+            </td>
+          </tr>
+          <tr>
+            <td>利用可能機能</td>
+            <td style="vertical-align:top;">
+              <label><input type="checkbox" name="editFeature" value="mypage"> マイページ</label><br>
+              <label><input type="checkbox" name="editFeature" value="board"> 掲示板</label><br>
+              <label><input type="checkbox" name="editFeature" value="application"> 書類申請</label><br>
+              <label><input type="checkbox" name="editFeature" value="user_search"> ユーザー検索</label><br>
+              <label><input type="checkbox" name="editFeature" value="e_learning"> E-ラーニング</label><br>
+              <label><input type="checkbox" name="editFeature" value="user_admin"> ユーザー管理</label>
+            </td>
+          </tr>
+          <tr><td>氏名</td><td><input type="text" id="editName"></td></tr>
           <tr><td>性別</td><td><select id="editGender"><option>男</option><option>女</option></select></td></tr>
           <tr><td>生年月日</td><td><input type="date" id="editBirth"></td></tr>
           <tr><td>電話番号</td><td><input type="text" id="editTel"></td></tr>
           <tr><td>メール</td><td><input type="text" id="editMail"></td></tr>
+          <tr><td>郵便番号</td><td><input type="text" id="editZip"></td></tr>
           <tr><td>住所</td><td><input type="text" id="editAddress"></td></tr>
           <tr><td>所属</td><td><input type="text" id="editDept"></td></tr>
           <tr><td>役職</td><td><input type="text" id="editPosition"></td></tr>

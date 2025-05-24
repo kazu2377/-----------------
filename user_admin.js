@@ -6,9 +6,12 @@ let dummyUsers = Array.from({length: 50}, (_, i) => ({
   birth: `199${i%10}-0${(i%9)+1}-15`,
   tel: '03-1234-' + String(1000+i).slice(-4),
   mail: `user${i+1}@example.com`,
+  zip: '100-' + String(1000+i).slice(-4),
   address: '東京都千代田区' + (i+1) + '番地',
   dept: ['営業部','総務部','開発部','人事部','経理部'][i%5],
   position: ['主任','係長','課長','部長','一般'][i%5],
+  role: i%2===0 ? '管理' : '一般',
+  features: ['mypage','board','application','user_search','e_learning','user_admin'].filter((_,j)=>j%2===i%2),
   deleted: false
 }));
 
@@ -113,9 +116,16 @@ function openEditDialog(idx) {
   document.getElementById('editBirth').value = user.birth;
   document.getElementById('editTel').value = user.tel;
   document.getElementById('editMail').value = user.mail;
+  document.getElementById('editZip').value = user.zip || '';
   document.getElementById('editAddress').value = user.address;
   document.getElementById('editDept').value = user.dept;
   document.getElementById('editPosition').value = user.position;
+  // 権限
+  const roles = document.getElementsByName('editRole');
+  roles.forEach(r => { r.checked = (r.value === user.role); });
+  // 機能
+  const features = document.getElementsByName('editFeature');
+  features.forEach(f => { f.checked = user.features && user.features.includes(f.value); });
   document.getElementById('userEditDialog').style.display = 'flex';
   document.getElementById('userEditForm').setAttribute('data-index', idx);
 }
@@ -131,9 +141,16 @@ document.getElementById('userEditForm').addEventListener('submit', function(e) {
   user.birth = document.getElementById('editBirth').value;
   user.tel = document.getElementById('editTel').value;
   user.mail = document.getElementById('editMail').value;
+  user.zip = document.getElementById('editZip').value;
   user.address = document.getElementById('editAddress').value;
   user.dept = document.getElementById('editDept').value;
   user.position = document.getElementById('editPosition').value;
+  // 権限
+  const roles = document.getElementsByName('editRole');
+  user.role = Array.from(roles).find(r => r.checked)?.value || '一般';
+  // 機能
+  const features = document.getElementsByName('editFeature');
+  user.features = Array.from(features).filter(f => f.checked).map(f => f.value);
   document.getElementById('userEditDialog').style.display = 'none';
   renderUserAdminTable();
 });
