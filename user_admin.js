@@ -135,6 +135,28 @@ document.getElementById('closeEditDialogBtn').addEventListener('click', function
 document.getElementById('userEditForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const idx = this.getAttribute('data-index');
+  if (idx === 'new') {
+    // 新規追加
+    const newUser = {
+      id: 'U' + String(dummyUsers.length+1).padStart(4, '0'),
+      name: document.getElementById('editName').value,
+      gender: document.getElementById('editGender').value,
+      birth: document.getElementById('editBirth').value,
+      tel: document.getElementById('editTel').value,
+      mail: document.getElementById('editMail').value,
+      zip: document.getElementById('editZip').value,
+      address: document.getElementById('editAddress').value,
+      dept: document.getElementById('editDept').value,
+      position: document.getElementById('editPosition').value,
+      role: Array.from(document.getElementsByName('editRole')).find(r => r.checked)?.value || '一般',
+      features: Array.from(document.getElementsByName('editFeature')).filter(f => f.checked).map(f => f.value),
+      deleted: false
+    };
+    dummyUsers.push(newUser);
+    document.getElementById('userEditDialog').style.display = 'none';
+    renderUserAdminTable();
+    return;
+  }
   const user = dummyUsers[idx];
   user.name = document.getElementById('editName').value;
   user.gender = document.getElementById('editGender').value;
@@ -153,6 +175,27 @@ document.getElementById('userEditForm').addEventListener('submit', function(e) {
   user.features = Array.from(features).filter(f => f.checked).map(f => f.value);
   document.getElementById('userEditDialog').style.display = 'none';
   renderUserAdminTable();
+});
+
+document.getElementById('addUserBtn').addEventListener('click', function() {
+  // 空欄でダイアログを開く
+  document.getElementById('editName').value = '';
+  document.getElementById('editGender').value = '男';
+  document.getElementById('editBirth').value = '';
+  document.getElementById('editTel').value = '';
+  document.getElementById('editMail').value = '';
+  document.getElementById('editZip').value = '';
+  document.getElementById('editAddress').value = '';
+  document.getElementById('editDept').value = '';
+  document.getElementById('editPosition').value = '';
+  // 権限
+  const roles = document.getElementsByName('editRole');
+  roles.forEach(r => { r.checked = (r.value === '一般'); });
+  // 機能
+  const features = document.getElementsByName('editFeature');
+  features.forEach(f => { f.checked = false; });
+  document.getElementById('userEditDialog').style.display = 'flex';
+  document.getElementById('userEditForm').setAttribute('data-index', 'new');
 });
 
 // 初期表示
