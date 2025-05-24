@@ -65,4 +65,32 @@ document.getElementById('userNextPageBtn').addEventListener('click', function() 
     userCurrentPage++;
     renderUserTable();
   }
+});
+
+// メール送信ダイアログの表示・非表示
+const mailDialog = document.getElementById('mailDialog');
+const openMailDialogBtn = document.getElementById('openMailDialogBtn');
+const closeMailDialogBtn = document.getElementById('closeMailDialogBtn');
+const mailForm = document.getElementById('mailForm');
+
+openMailDialogBtn.addEventListener('click', function() {
+  const checked = document.querySelectorAll('#userResultTableBody input[type="checkbox"]:checked');
+  if (checked.length === 0) {
+    alert('送信先を選択してください');
+    return;
+  }
+  // 最初の選択ユーザーIDを宛先に
+  const firstRow = checked[0].closest('tr');
+  document.getElementById('mailTo').value = firstRow.children[1].textContent;
+  mailDialog.style.display = 'flex';
+});
+
+closeMailDialogBtn.addEventListener('click', function() {
+  mailDialog.style.display = 'none';
+});
+
+mailForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('メールを送信しました！（ダミー）');
+  mailDialog.style.display = 'none';
 }); 

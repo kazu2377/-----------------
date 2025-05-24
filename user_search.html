@@ -74,7 +74,7 @@
           </table>
           <div class="user-search-buttons">
             <button type="submit" class="post-btn">検索</button>
-            <button type="button" class="post-btn">メール送信</button>
+            <button type="button" class="post-btn" id="openMailDialogBtn">メール送信</button>
             <button type="button" class="post-btn">申請確認</button>
             <button type="button" class="post-btn" disabled style="background:#ccc;">△</button>
           </div>
@@ -114,6 +114,39 @@
   <footer>
     <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
   </footer>
+  <div id="mailDialog" class="modal">
+    <div class="modal-content">
+      <h2 style="text-align:center; color:#5497d1;">メール送信</h2>
+      <form id="mailForm">
+        <table class="mail-form-table" style="width:100%;">
+          <tr>
+            <td>宛先</td>
+            <td><input type="text" id="mailTo"></td>
+          </tr>
+          <tr>
+            <td>件名</td>
+            <td><input type="text" id="mailSubject"></td>
+          </tr>
+        </table>
+        <hr>
+        <div style="font-weight:bold; margin-bottom:4px;">メール内容</div>
+        <textarea id="mailBody" rows="6"></textarea>
+        <hr>
+        <div>
+          <button type="button" class="post-btn">添付ファイル1</button>
+          <span>添付ファイル1</span> <span class="attach-delete">×</span><br>
+          <button type="button" class="post-btn">添付ファイル2</button>
+          <span>添付ファイル2</span> <span class="attach-delete">×</span><br>
+          <button type="button" class="post-btn">添付ファイル3</button>
+          <span>添付ファイル3</span> <span class="attach-delete">×</span>
+        </div>
+        <div class="mail-form-buttons">
+          <button type="submit" class="post-btn">送信</button>
+          <button type="button" class="post-btn" id="closeMailDialogBtn">閉じる</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <script src="user_search.js"></script>
 
 </body>
