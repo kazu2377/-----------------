@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ユーザー管理 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="user-header">
+    <span class="header-title">ユーザー管理</span>
+    <span class="header-userinfo">ニックネーム　権限</span>
+  </header>
+  <div class="mypage-container">
+    <aside class="mypage-sidebar">
+      <div class="profile-box">
+        <div class="image-box" style="background:#ffc000; color:#222; display:flex; align-items:center; justify-content:center; font-size:1.3em;">画像</div>
+        <div class="nickname">ニックネーム</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-label">情報</div>
+        <div>星座</div>
+        <div>役職</div>
+        <div>電話番号</div>
+      </div>
+      <div class="sidebar-menu">
+        <a href="mypage.html" style="text-decoration:none;color:inherit;"><div>マイページ</div></a>
+        <a href="board.html" style="text-decoration:none;color:inherit;"><div>掲示板</div></a>
+        <a href="application_list.html" style="text-decoration:none;color:inherit;"><div>書類申請</div></a>
+        <a href="user_search.html" style="text-decoration:none;color:inherit;"><div>ユーザー検索</div></a>
+        <div>E-ラーニング</div>
+        <div style="font-weight:bold;">ユーザー管理</div>
+      </div>
+    </aside>
+    <main class="user-search-main">
+      <h2 style="margin-top:24px;">ユーザーの一覧</h2>
+      <div style="margin-bottom:12px;">
+        表示区分
+        <select id="displayTypeSelect">
+          <option value="active">新規申請</option>
+          <option value="deleted">削除済み</option>
+        </select>
+        <button id="recoverBtn" class="post-btn" type="button">回復</button>
+        <button id="deleteBtn" class="post-btn" type="button">削除</button>
+      </div>
+      <div style="margin-bottom:8px;">
+        <span>総件数：<span id="userTotalCount">0</span>件</span>
+        <span style="margin-left:40px;">表示件数
+          <select id="userDisplayCountSelect">
+            <option value="5">5件</option>
+            <option value="10">10件</option>
+            <option value="20">20件</option>
+            <option value="50">50件</option>
+            <option value="200">すべて</option>
+          </select>
+        </span>
+      </div>
+      <table class="user-result-table">
+        <thead>
+          <tr>
+            <th>選択</th><th>氏名</th><th>性別</th><th>生年月日</th><th>電話番号</th><th>メール</th><th>住所</th><th>所属</th><th>役職</th><th>編集</th>
+          </tr>
+        </thead>
+        <tbody id="userAdminTableBody">
+          <!-- JSでダミーデータを挿入 -->
+        </tbody>
+      </table>
+      <div class="user-pagination" style="margin-top:10px;">
+        <button id="userPrevPageBtn">&#9664;</button>
+        <select id="userPageSelect"></select>
+        <button id="userNextPageBtn">&#9654;</button>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <div id="userEditDialog" class="modal">
+    <div class="modal-content" style="max-width:600px;">
+      <h2 style="text-align:center; color:#5497d1;">ユーザー編集</h2>
+      <form id="userEditForm">
+        <table style="width:100%;">
+          <tr><td>氏名</td><td><input type="text" id="editName" style="width:90%"></td></tr>
+          <tr><td>性別</td><td><select id="editGender"><option>男</option><option>女</option></select></td></tr>
+          <tr><td>生年月日</td><td><input type="date" id="editBirth"></td></tr>
+          <tr><td>電話番号</td><td><input type="text" id="editTel"></td></tr>
+          <tr><td>メール</td><td><input type="text" id="editMail"></td></tr>
+          <tr><td>住所</td><td><input type="text" id="editAddress"></td></tr>
+          <tr><td>所属</td><td><input type="text" id="editDept"></td></tr>
+          <tr><td>役職</td><td><input type="text" id="editPosition"></td></tr>
+        </table>
+        <div style="margin-top:20px; text-align:center;">
+          <button type="submit" class="post-btn">保存</button>
+          <button type="button" class="post-btn" id="closeEditDialogBtn">閉じる</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="user_admin.js"></script>
+</body>
+</html> 
