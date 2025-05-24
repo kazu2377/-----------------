@@ -6,6 +6,14 @@ const dummyData = [
   { 状態: '表示中', 種類: '連絡', 重要度: '低', 件名: '備品発注', 内容: '必要な備品を連絡', 投稿者: '佐藤 花子', 投稿日: '2024-06-05' },
 ];
 
+function getAllPosts() {
+  let posts = [];
+  try {
+    posts = JSON.parse(localStorage.getItem('boardPosts') || '[]');
+  } catch {}
+  return posts.concat(dummyData);
+}
+
 function renderTable(data) {
   const tbody = document.getElementById('boardTableBody');
   tbody.innerHTML = '';
@@ -26,7 +34,7 @@ function filterData() {
   const field = document.getElementById('searchFieldSelect').value;
   const keyword = document.getElementById('searchInput').value.trim();
   const displayCount = parseInt(document.getElementById('displayCountSelect').value, 10);
-  let filtered = dummyData.filter(row => row['状態'] === status);
+  let filtered = getAllPosts().filter(row => row['状態'] === status);
   if (keyword) {
     filtered = filtered.filter(row => String(row[field]).includes(keyword));
   }
@@ -37,6 +45,10 @@ document.getElementById('searchBtn').addEventListener('click', filterData);
 document.getElementById('statusSelect').addEventListener('change', filterData);
 document.getElementById('searchFieldSelect').addEventListener('change', filterData);
 document.getElementById('displayCountSelect').addEventListener('change', filterData);
+
+document.getElementById('registerBtn').addEventListener('click', function() {
+  window.location.href = 'board_post.html';
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   filterData();

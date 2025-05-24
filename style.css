@@ -452,4 +452,60 @@ footer {
 .board-table th {
   background: #e3f0fa;
   font-weight: bold;
+}
+.board-post-container {
+  background: #fff;
+  width: 600px;
+  margin: 40px auto 0 auto;
+  padding: 30px 40px 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #b0c4de;
+}
+.board-post-container h2 {
+  font-size: 1.4em;
+  border-bottom: 3px solid #6ea6d8;
+  padding-bottom: 4px;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+.board-post-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin-bottom: 20px;
+}
+.board-post-table td {
+  font-size: 1.1em;
+  padding: 4px 8px 4px 0;
+  vertical-align: middle;
+  color: #555;
+}
+.attach-area {
+  margin: 20px 0 20px 0;
+}
+.attach-btn {
+  background: #6ea6d8;
+  color: #fff;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 6px;
+  margin-right: 10px;
+}
+.attach-file-label {
+  margin-right: 10px;
+}
+.attach-delete {
+  color: #1976d2;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-right: 16px;
+}
+.board-post-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
 } 

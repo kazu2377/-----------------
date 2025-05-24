@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>掲示板投稿 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="board-post-container">
+    <h2>掲示板投稿</h2>
+    <form id="boardPostForm">
+      <table class="board-post-table">
+        <tr>
+          <td>投稿者</td>
+          <td>ニックネーム</td>
+        </tr>
+        <tr>
+          <td>件名</td>
+          <td><input type="text" id="postTitle" style="width:90%;"></td>
+        </tr>
+        <tr>
+          <td>分類</td>
+          <td>
+            <select id="postCategory">
+              <option value="News">News</option>
+              <option value="アンケート">アンケート</option>
+            </select>
+            <span style="margin-left:40px;">重要度</span>
+            <select id="postImportance">
+              <option value="高">高</option>
+              <option value="中">中</option>
+              <option value="低">低</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>投稿内容</td>
+          <td><textarea id="postContent" rows="3" style="width:90%;"></textarea></td>
+        </tr>
+      </table>
+      <div class="attach-area">
+        <button type="button" class="attach-btn">添付ファイル1</button>
+        <span class="attach-file-label">添付ファイル1</span> <span class="attach-delete">×</span><br>
+        <button type="button" class="attach-btn">添付ファイル2</button>
+        <span class="attach-file-label">添付ファイル2</span> <span class="attach-delete">×</span><br>
+        <button type="button" class="attach-btn">添付ファイル3</button>
+        <span class="attach-file-label">添付ファイル3</span> <span class="attach-delete">×</span>
+      </div>
+      <div class="board-post-buttons">
+        <button type="submit" class="post-btn">投稿</button>
+        <button type="button" class="post-btn" id="cancelBtn">キャンセル</button>
+      </div>
+    </form>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="board_post.js"></script>
+</body>
+</html> 
