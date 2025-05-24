@@ -423,4 +423,33 @@ footer {
   font-size: 1.1em;
   border-radius: 4px;
   border: 1px solid #b0c4de;
+}
+.board-main {
+  flex: 1;
+  padding: 30px 40px;
+  background: #fff;
+}
+.board-search-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.board-table-area {
+  margin-top: 10px;
+}
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 1em;
+}
+.board-table th, .board-table td {
+  border: 1px solid #b0c4de;
+  padding: 6px 8px;
+  text-align: center;
+}
+.board-table th {
+  background: #e3f0fa;
+  font-weight: bold;
 } 

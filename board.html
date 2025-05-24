@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>掲示板 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="user-header">
+    <span class="header-title">掲示板</span>
+    <span class="header-userinfo">ニックネーム　権限</span>
+  </header>
+  <div class="mypage-container">
+    <aside class="mypage-sidebar">
+      <div class="profile-box">
+        <div class="image-box"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="プロフィール画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+        <div class="nickname">山田 太郎</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-label">情報</div>
+        <div>星座</div>
+        <div>主任</div>
+        <div>03-1234-5678</div>
+      </div>
+      <div class="sidebar-menu">
+        <div class="menu-label">マイページ</div>
+        <a href="board.html" style="text-decoration:none;color:inherit;"><div>掲示板</div></a>
+        <div>書類申請</div>
+        <div>ユーザー検索</div>
+        <div>E-ラーニング</div>
+        <div>ユーザー管理</div>
+      </div>
+    </aside>
+    <main class="board-main">
+      <h2>掲示板</h2>
+      <div class="board-search-area">
+        <label>表示状態
+          <select id="statusSelect">
+            <option value="表示中">表示中</option>
+            <option value="非表示">非表示</option>
+          </select>
+        </label>
+        <label>検索項目
+          <select id="searchFieldSelect">
+            <option value="投稿者">投稿者</option>
+            <option value="件名">件名</option>
+            <option value="内容">内容</option>
+          </select>
+        </label>
+        <input type="text" id="searchInput" placeholder="曖昧検索">
+        <button id="searchBtn" class="post-btn" style="margin-left:8px;">検索</button>
+        <button id="registerBtn" class="post-btn" style="margin-left:24px;">掲示板登録</button>
+      </div>
+      <div style="margin:16px 0;">総件数：<span id="totalCount"></span>件　表示件数
+        <select id="displayCountSelect">
+          <option value="5">5件</option>
+          <option value="10">10件</option>
+          <option value="20">20件</option>
+        </select>
+      </div>
+      <div class="board-table-area">
+        <table class="board-table">
+          <thead>
+            <tr>
+              <th>状態</th><th>種類</th><th>重要度</th><th>件名</th><th>内容</th><th>投稿者</th><th>投稿日</th>
+            </tr>
+          </thead>
+          <tbody id="boardTableBody">
+            <!-- JSでダミーデータを挿入 -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="board.js"></script>
+</body>
+</html> 
