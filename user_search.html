@@ -75,7 +75,7 @@
           <div class="user-search-buttons">
             <button type="submit" class="post-btn">検索</button>
             <button type="button" class="post-btn" id="openMailDialogBtn">メール送信</button>
-            <button type="button" class="post-btn">申請確認</button>
+            <button type="button" class="post-btn" id="openApplicationDialogBtn">申請確認</button>
             <button type="button" class="post-btn" disabled style="background:#ccc;">△</button>
           </div>
         </form>
@@ -134,17 +134,17 @@
         <hr>
         <div>
           <div class="mail-attach-row">
-            <span class="mail-attach-label">添付ファイル1 ×</span>
+            <span class="mail-attach-label">添付ファイル1 <span id="fileName1">×</span></span>
             <button type="button" class="post-btn attach-btn" data-idx="1">添付ファイル1</button>
             <input type="file" id="attachFile1" style="display:none;">
           </div>
           <div class="mail-attach-row">
-            <span class="mail-attach-label">添付ファイル2 ×</span>
+            <span class="mail-attach-label">添付ファイル2 <span id="fileName2">×</span></span>
             <button type="button" class="post-btn attach-btn" data-idx="2">添付ファイル2</button>
             <input type="file" id="attachFile2" style="display:none;">
           </div>
           <div class="mail-attach-row">
-            <span class="mail-attach-label">添付ファイル3 ×</span>
+            <span class="mail-attach-label">添付ファイル3 <span id="fileName3">×</span></span>
             <button type="button" class="post-btn attach-btn" data-idx="3">添付ファイル3</button>
             <input type="file" id="attachFile3" style="display:none;">
           </div>
@@ -152,6 +152,58 @@
         <div class="mail-form-buttons">
           <button type="submit" class="post-btn" id="mailSendBtn">送信</button>
           <button type="button" class="post-btn" id="closeMailDialogBtn">閉じる</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="applicationDialog" class="modal">
+    <div class="modal-content" style="max-width:1100px;">
+      <h2 style="text-align:center; color:#5497d1;">書類申請管理（管理者用）</h2>
+      <form id="applicationAdminForm">
+        <div style="display:flex; gap:40px; margin-bottom:10px;">
+          <div>氏名<br><input type="text" style="width:120px;"></div>
+          <div>氏名<br><input type="text" style="width:120px;"></div>
+          <div>所属<br><input type="text" style="width:120px;"></div>
+          <div>所属<br><input type="text" style="width:120px;"></div>
+          <div>役職<br><input type="text" style="width:120px;"></div>
+          <div>役職<br><input type="text" style="width:120px;"></div>
+        </div>
+        <div style="margin-bottom:10px;">
+          状態
+          <select id="adminStatusSelect">
+            <option value="未承認">未承認</option>
+            <option value="承認中">承認中</option>
+            <option value="承認済">承認済</option>
+          </select>
+        </div>
+        <div style="margin-bottom:10px;">
+          <span>総件数 <span id="adminTotalCount">0</span>件</span>
+          <span style="margin-left:40px;">表示件数
+            <select id="adminDisplayCountSelect">
+              <option value="5">5件</option>
+              <option value="10">10件</option>
+              <option value="20">20件</option>
+              <option value="50">50件</option>
+            </select>
+          </span>
+        </div>
+        <table class="user-result-table">
+          <thead>
+            <tr>
+              <th>状態</th><th>申請ID</th><th>申請種類</th><th>タイトル</th><th>申請日</th><th>承認日</th><th>連絡事項</th>
+            </tr>
+          </thead>
+          <tbody id="adminApplicationTableBody">
+            <!-- JSでダミーデータを挿入 -->
+          </tbody>
+        </table>
+        <div class="user-pagination" style="margin-top:10px;">
+          <button id="adminPrevPageBtn">&#9664;</button>
+          <select id="adminPageSelect"></select>
+          <button id="adminNextPageBtn">&#9654;</button>
+        </div>
+        <div class="mail-form-buttons">
+          <button type="button" class="post-btn" id="closeApplicationDialogBtn">閉じる</button>
         </div>
       </form>
     </div>
