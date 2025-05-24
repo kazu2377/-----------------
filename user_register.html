@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ユーザー情報新規登録 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="user-header">
+    <span class="header-title">ユーザー情報新規登録</span>
+    <span class="header-userinfo">ニックネーム　権限</span>
+  </header>
+  <div class="user-register-container">
+    <div class="user-register-left">
+      <div class="image-box">画像設定</div>
+    </div>
+    <div class="user-register-right">
+      <section class="user-section">
+        <h2>基本情報新規登録</h2>
+        <form id="userRegisterForm">
+          <table class="user-table">
+            <tr><td>ユーザーID</td><td><input type="text" name="userid" required></td><td class="required">*</td></tr>
+            <tr><td>メールアドレス</td><td><input type="email" name="email" required></td><td class="required">*</td></tr>
+            <tr><td>パスワード</td><td><input type="password" name="password" required></td><td class="required">*</td></tr>
+            <tr><td>パスワード確認</td><td><input type="password" name="password2" required></td><td class="required">*</td></tr>
+          </table>
+          <h3>プロフィール新規登録</h3>
+          <table class="user-table">
+            <tr>
+              <td>氏名</td><td><input type="text" name="sei"></td>
+              <td>氏名</td><td><input type="text" name="mei"></td>
+            </tr>
+            <tr>
+              <td>性別</td><td><input type="text" name="gender1"></td>
+              <td>性別</td><td><input type="text" name="gender2"></td>
+            </tr>
+            <tr>
+              <td>生年月日</td><td><input type="text" name="birth1"></td>
+              <td>生年月日</td><td><input type="text" name="birth2"></td>
+            </tr>
+            <tr>
+              <td>ニックネーム</td><td colspan="3"><input type="text" name="nickname" style="width:80%;"></td><td class="required">*</td>
+            </tr>
+            <tr>
+              <td>電話番号</td><td colspan="3"><input type="text" name="tel1" style="width:60px;"> - <input type="text" name="tel2" style="width:60px;"> - <input type="text" name="tel3" style="width:60px;"></td><td class="required">*</td>
+            </tr>
+          </table>
+          <div class="register-buttons">
+            <button type="submit">登録</button>
+            <button type="button" onclick="window.location.href='index.html'">キャンセル</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="user_register.js"></script>
+</body>
+</html> 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>マイページ | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="user-header">
+    <span class="header-title">マイページ</span>
+    <span class="header-userinfo">ニックネーム　権限</span>
+  </header>
+  <div class="mypage-container">
+    <aside class="mypage-sidebar">
+      <div class="profile-box">
+        <div class="image-box"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="プロフィール画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+        <div class="nickname">山田 太郎</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-label">情報</div>
+        <div>営業部</div>
+        <div>主任</div>
+        <div>03-1234-5678</div>
+      </div>
+      <div class="sidebar-menu">
+        <div class="menu-label">マイページ</div>
+        <div>掲示板</div>
+        <div>書類申請</div>
+        <div>ユーザー検索</div>
+        <div>E-ラーニング</div>
+        <div>ユーザー管理</div>
+      </div>
+    </aside>
+    <main class="mypage-main">
+      <section class="new-post-section">
+        <div class="section-title">新投稿入力</div>
+        <form id="newPostForm" enctype="multipart/form-data" style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;">
+          <label style="font-weight:bold;">写真アップロード</label>
+          <div class="new-post-image image-box" id="newPostImagePreview" style="cursor:pointer;">
+            <span id="newPostImageText">ここに写真をアップロード</span>
+            <img id="newPostImageTag" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+          </div>
+          <input type="file" id="newPostImageInput" accept="image/*" style="display:none;">
+          <label style="font-weight:bold;">コメント</label>
+          <textarea id="newPostComment" rows="2" style="width:300px;"></textarea>
+          <button class="post-btn" type="submit">投稿</button>
+        </form>
+      </section>
+      <section class="post-list-section">
+        <div class="post-box">
+          <div class="post-header">
+            <div class="image-box post-user-image"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="投稿者画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+            <span class="post-nickname"><b>佐藤 花子</b></span>
+            <div class="post-actions">
+              <button class="edit-btn">✏️</button>
+              <button class="delete-btn">🗑️</button>
+            </div>
+          </div>
+          <div class="post-content">
+            今日は社内イベントの写真をシェアします！
+            <div class="post-image image-box"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="投稿画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+          </div>
+          <div class="comment-list">
+            <div class="comment-box">
+              <div class="image-box comment-user-image"><img src="https://randomuser.me/api/portraits/men/65.jpg" alt="コメント者画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+              <span class="comment-nickname">田中 一郎</span>
+              <span class="comment-text">素敵な写真ですね！</span>
+              <button class="comment-delete">x</button>
+            </div>
+            <div class="comment-box">
+              <div class="image-box comment-user-image"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="コメント者画像" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>
+              <span class="comment-nickname">鈴木 さゆり</span>
+              <span class="comment-text">イベント楽しかったです！</span>
+              <button class="comment-delete">x</button>
+            </div>
+            <div class="new-comment-section">
+              <div>新コメント入力</div>
+              <textarea class="new-comment-text" rows="2" style="width:90%;margin:8px 0;"></textarea>
+              <button class="comment-post-btn">投稿</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="mypage.js"></script>
+</body>
+</html> 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新規申請 | 社内コミュニケーションシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="register-container">
+    <h1>新規申請</h1>
+    <form id="registerForm">
+      <table>
+        <tr><td>氏名</td><td colspan="4"><input type="text" name="name" required></td></tr>
+        <tr>
+          <td>性別</td>
+          <td colspan="4">
+            <label><input type="radio" name="gender" value="男"> 男</label>
+            <label style="margin-left:30px;"><input type="radio" name="gender" value="女"> 女</label>
+          </td>
+        </tr>
+        <tr>
+          <td>生年月日</td>
+          <td><select name="birth_year"><option>年</option></select></td>
+          <td><select name="birth_month"><option>月</option></select></td>
+          <td><select name="birth_day"><option>日</option></select></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td colspan="2"><input type="text" name="tel1" style="width:60px;"> - <input type="text" name="tel2" style="width:60px;"> - <input type="text" name="tel3" style="width:60px;"></td>
+        </tr>
+        <tr>
+          <td><b>メール</b></td>
+          <td colspan="4"><input type="text" name="mail1" style="width:120px;"> @ <input type="text" name="mail2" style="width:120px;"></td>
+        </tr>
+        <tr>
+          <td>郵便場号</td>
+          <td colspan="2"><input type="text" name="zip1" style="width:60px;"> - <input type="text" name="zip2" style="width:60px;"></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td colspan="4"><input type="text" name="address" style="width:100%;"></td>
+        </tr>
+        <tr>
+          <td>所属</td>
+          <td colspan="4"><select name="department" style="width:100%;"><option>選択</option></select></td>
+        </tr>
+        <tr>
+          <td>役職</td>
+          <td colspan="4"><input type="text" name="position" style="width:100%;"></td>
+        </tr>
+      </table>
+      <div class="register-buttons">
+        <button type="submit">申請</button>
+        <button type="button" onclick="window.location.href='index.html'">キャンセル</button>
+      </div>
+    </form>
+  </div>
+  <footer>
+    <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
+  </footer>
+  <script src="register.js"></script>
+</body>
+</html> 
