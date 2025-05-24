@@ -93,4 +93,36 @@ mailForm.addEventListener('submit', function(e) {
   e.preventDefault();
   alert('メールを送信しました！（ダミー）');
   mailDialog.style.display = 'none';
+});
+
+document.querySelectorAll('.attach-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const idx = btn.getAttribute('data-idx');
+    document.getElementById('attachFile' + idx).click();
+  });
+});
+
+// 添付ファイル名表示・削除
+for (let i = 1; i <= 3; i++) {
+  const input = document.getElementById('attachFile' + i);
+  const label = document.getElementById('fileName' + i);
+  if (input && label) {
+    input.addEventListener('change', function() {
+      label.textContent = input.files[0] ? input.files[0].name + ' ×' : '×';
+    });
+    label.addEventListener('click', function() {
+      input.value = '';
+      label.textContent = '×';
+    });
+  }
+}
+
+// 送信・閉じるボタンのidでの動作（念のため）
+document.getElementById('mailSendBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  alert('メールを送信しました！（ダミー）');
+  mailDialog.style.display = 'none';
+});
+document.getElementById('closeMailDialogBtn').addEventListener('click', function() {
+  mailDialog.style.display = 'none';
 }); 

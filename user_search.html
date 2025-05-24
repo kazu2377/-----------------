@@ -133,21 +133,38 @@
         <textarea id="mailBody" rows="6"></textarea>
         <hr>
         <div>
-          <button type="button" class="post-btn">添付ファイル1</button>
-          <span>添付ファイル1</span> <span class="attach-delete">×</span><br>
-          <button type="button" class="post-btn">添付ファイル2</button>
-          <span>添付ファイル2</span> <span class="attach-delete">×</span><br>
-          <button type="button" class="post-btn">添付ファイル3</button>
-          <span>添付ファイル3</span> <span class="attach-delete">×</span>
+          <div class="mail-attach-row">
+            <span class="mail-attach-label">添付ファイル1 ×</span>
+            <button type="button" class="post-btn attach-btn" data-idx="1">添付ファイル1</button>
+            <input type="file" id="attachFile1" style="display:none;">
+          </div>
+          <div class="mail-attach-row">
+            <span class="mail-attach-label">添付ファイル2 ×</span>
+            <button type="button" class="post-btn attach-btn" data-idx="2">添付ファイル2</button>
+            <input type="file" id="attachFile2" style="display:none;">
+          </div>
+          <div class="mail-attach-row">
+            <span class="mail-attach-label">添付ファイル3 ×</span>
+            <button type="button" class="post-btn attach-btn" data-idx="3">添付ファイル3</button>
+            <input type="file" id="attachFile3" style="display:none;">
+          </div>
         </div>
         <div class="mail-form-buttons">
-          <button type="submit" class="post-btn">送信</button>
+          <button type="submit" class="post-btn" id="mailSendBtn">送信</button>
           <button type="button" class="post-btn" id="closeMailDialogBtn">閉じる</button>
         </div>
       </form>
     </div>
   </div>
   <script src="user_search.js"></script>
-
+  <script>
+    document.querySelectorAll('.attach-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const idx = btn.getAttribute('data-idx');
+        const input = document.getElementById('attachFile' + idx);
+        if (input) input.click();
+      });
+    });
+  </script>
 </body>
 </html> 
