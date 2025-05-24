@@ -132,6 +132,9 @@ const dummyApplications = Array.from({length: 50}, (_, i) => {
   const statusArr = ['未承認','承認中','承認済'];
   const typeArr = ['休暇申請','経費精算','出張申請','備品購入','在宅勤務','勤務変更'];
   const titleArr = ['有給休暇取得','交通費精算','大阪出張','ノートPC購入','在宅勤務希望','勤務時間変更'];
+  const nameArr = ['山田 太郎','佐藤 花子','田中 一郎','鈴木 さゆり','高橋 健','伊藤 美咲','渡辺 剛','中村 由美','小林 直樹','加藤 里奈'];
+  const deptArr = ['営業部','総務部','開発部','人事部','経理部'];
+  const posArr = ['主任','係長','課長','部長','一般'];
   const today = new Date();
   const applyDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - i);
   const approveDate = i%3===2 ? new Date(today.getFullYear(), today.getMonth(), today.getDate() - i + 2) : '';
@@ -142,28 +145,33 @@ const dummyApplications = Array.from({length: 50}, (_, i) => {
     title: titleArr[i%titleArr.length] + (i+1),
     applyDate: applyDate.toLocaleDateString('ja-JP'),
     approveDate: approveDate ? approveDate.toLocaleDateString('ja-JP') : '',
-    note: i%5===0 ? '至急対応' : ''
+    note: i%5===0 ? '至急対応' : '',
+    name: nameArr[i%nameArr.length],
+    department: deptArr[i%deptArr.length],
+    position: posArr[i%posArr.length],
+    file: i%4===0 ? `file${i+1}.pdf` : ''
   };
 });
 let adminCurrentPage = 1;
 let adminStatusFilter = '未承認';
+let filteredApplications = dummyApplications;
 
 function renderAdminApplicationTable() {
   const displayCount = parseInt(document.getElementById('adminDisplayCountSelect').value, 10) || 50;
   adminStatusFilter = document.getElementById('adminStatusSelect').value;
-  const filtered = dummyApplications.filter(a => adminStatusFilter === '' || a.status === adminStatusFilter);
-  const total = filtered.length;
+  filteredApplications = dummyApplications.filter(a => adminStatusFilter === '' || a.status === adminStatusFilter);
+  const total = filteredApplications.length;
   const totalPages = Math.max(1, Math.ceil(total / displayCount));
   if (adminCurrentPage > totalPages) adminCurrentPage = totalPages;
   const start = (adminCurrentPage - 1) * displayCount;
   const end = displayCount === 50 ? total : start + displayCount;
-  const pageData = filtered.slice(start, end);
+  const pageData = filteredApplications.slice(start, end);
 
   const tbody = document.getElementById('adminApplicationTableBody');
   tbody.innerHTML = '';
-  pageData.forEach(app => {
+  pageData.forEach((app, idx) => {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${app.status}</td><td>${app.id}</td><td>${app.type}</td><td>${app.title}</td><td>${app.applyDate}</td><td>${app.approveDate}</td><td>${app.note}</td>`;
+    tr.innerHTML = `<td>${app.status}</td><td>${app.id}</td><td>${app.type}</td><td>${app.title}</td><td>${app.applyDate}</td><td>${app.approveDate}</td><td>${app.note}</td><td><button type="button" class="detail-btn" data-index="${start+idx}">詳細</button></td>`;
     tbody.appendChild(tr);
   });
   document.getElementById('adminTotalCount').textContent = total;
@@ -178,7 +186,48 @@ function renderAdminApplicationTable() {
     if (i === adminCurrentPage) opt.selected = true;
     pageSelect.appendChild(opt);
   }
+
+  // 詳細ボタンイベント再付与
+  tbody.querySelectorAll('.detail-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const idx = btn.getAttribute('data-index');
+      showApplicationDetail(idx);
+    });
+  });
 }
+
+function showApplicationDetail(idx) {
+  const app = filteredApplications[idx];
+  document.getElementById('applicationDetailBox').innerHTML = `
+    <div>申請状態: <span style="color:red">${app.status}</span></div>
+    <div>氏名: ${app.name}</div>
+    <div>所属: ${app.department}</div>
+    <div>役職: ${app.position}</div>
+    <div>申請種類: ${app.type}</div>
+    <div>タイトル: <b>${app.title}</b></div>
+    <div>申請ファイル: ${app.file || 'なし'}</div>
+    <div>連絡事項: ${app.note}</div>
+  `;
+  document.getElementById('approveBtn').setAttribute('data-index', idx);
+  document.getElementById('rejectBtn').setAttribute('data-index', idx);
+  document.getElementById('applicationDetailDialog').style.display = 'flex';
+}
+
+document.getElementById('approveBtn').addEventListener('click', function() {
+  const idx = this.getAttribute('data-index');
+  filteredApplications[idx].status = '承認済';
+  renderAdminApplicationTable();
+  document.getElementById('applicationDetailDialog').style.display = 'none';
+});
+document.getElementById('rejectBtn').addEventListener('click', function() {
+  const idx = this.getAttribute('data-index');
+  filteredApplications[idx].status = '差し戻し';
+  renderAdminApplicationTable();
+  document.getElementById('applicationDetailDialog').style.display = 'none';
+});
+document.getElementById('closeDetailBtn').addEventListener('click', function() {
+  document.getElementById('applicationDetailDialog').style.display = 'none';
+});
 
 document.getElementById('openApplicationDialogBtn').addEventListener('click', function() {
   const checked = document.querySelectorAll('#userResultTableBody input[type="checkbox"]:checked');

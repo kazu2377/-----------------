@@ -195,6 +195,18 @@
           </thead>
           <tbody id="adminApplicationTableBody">
             <!-- JSでダミーデータを挿入 -->
+            <tr>
+              <td>未承認</td>
+              <td>A0001</td>
+              <td>休暇申請</td>
+              <td>有給休暇取得1</td>
+              <td>2024/06/01</td>
+              <td></td>
+              <td>至急対応</td>
+              <td><button class="detail-btn" data-index="0">詳細</button></td>
+              <td><button type="button" class="detail-btn" data-index="0">詳細</button></td>
+
+            </tr>
           </tbody>
         </table>
         <div class="user-pagination" style="margin-top:10px;">
@@ -208,6 +220,19 @@
       </form>
     </div>
   </div>
+  <div id="applicationDetailDialog" class="modal">
+    <div class="modal-content" style="max-width:900px;">
+      <h2 style="text-align:center; color:#5497d1;">申請内容（承認用）</h2>
+      <div id="applicationDetailBox">
+        <!-- JSで内容を埋める -->
+      </div>
+      <div style="display:flex; gap:20px; margin:30px 0 0 30px;">
+        <button id="approveBtn" class="post-btn" type="button">承認</button>
+        <button id="rejectBtn" class="post-btn" type="button">差し戻し</button>
+        <button id="closeDetailBtn" class="post-btn" type="button" style="margin-left:auto;">申請一覧に戻る</button>
+      </div>
+    </div>
+  </div>
   <script src="user_search.js"></script>
   <script>
     document.querySelectorAll('.attach-btn').forEach(btn => {
@@ -216,6 +241,50 @@
         const input = document.getElementById('attachFile' + idx);
         if (input) input.click();
       });
+    });
+
+    // 詳細ボタンでダイアログ表示
+    // document.querySelectorAll('.detail-btn').forEach(btn => {
+    //   btn.addEventListener('click', function() {
+    //     const idx = btn.getAttribute('data-index');
+    //     showApplicationDetail(idx);
+    //   });
+    // });
+
+    function showApplicationDetail(idx) {
+      const app = filteredApplications[idx]; // 一覧のフィルタ済み配列から
+      // 詳細内容をHTMLで埋める
+      document.getElementById('applicationDetailBox').innerHTML = `
+        <div>申請状態: <span style="color:red">${app.status}</span></div>
+        <div>氏名: ${app.name}</div>
+        <div>所属: ${app.department}</div>
+        <div>役職: ${app.position}</div>
+        <div>申請種類: ${app.type}</div>
+        <div>タイトル: <b>${app.title}</b></div>
+        <div>申請ファイル: ${app.file || 'なし'}</div>
+        <div>連絡事項: ${app.note}</div>
+      `;
+      // ボタンにindexをセット
+      document.getElementById('approveBtn').setAttribute('data-index', idx);
+      document.getElementById('rejectBtn').setAttribute('data-index', idx);
+      document.getElementById('applicationDetailDialog').style.display = 'flex';
+    }
+
+    // 承認・差し戻し
+    document.getElementById('approveBtn').addEventListener('click', function() {
+      const idx = this.getAttribute('data-index');
+      filteredApplications[idx].status = '承認済';
+      renderAdminApplicationTable();
+      document.getElementById('applicationDetailDialog').style.display = 'none';
+    });
+    document.getElementById('rejectBtn').addEventListener('click', function() {
+      const idx = this.getAttribute('data-index');
+      filteredApplications[idx].status = '差し戻し';
+      renderAdminApplicationTable();
+      document.getElementById('applicationDetailDialog').style.display = 'none';
+    });
+    document.getElementById('closeDetailBtn').addEventListener('click', function() {
+      document.getElementById('applicationDetailDialog').style.display = 'none';
     });
   </script>
 </body>
