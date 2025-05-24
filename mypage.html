@@ -87,5 +87,56 @@
     <small>CopyRight &copy; 2015-2020 G&T Inc. All Rights Reserved.</small>
   </footer>
   <script src="mypage.js"></script>
+  <script>
+    // 投稿リスト・コメントリストのダミー追加用
+    document.getElementById('newPostForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const comment = document.getElementById('newPostComment').value;
+      const postList = document.querySelector('.post-list-section');
+      const postBox = document.createElement('div');
+      postBox.className = 'post-box';
+      postBox.innerHTML = `
+        <div class="post-header">
+          <div class="image-box post-user-image"><img src='https://randomuser.me/api/portraits/men/32.jpg' style='width:100%;height:100%;object-fit:cover;border-radius:4px;'></div>
+          <span class="post-nickname"><b>山田 太郎</b></span>
+          <div class="post-actions">
+            <button class="edit-btn">✏️</button>
+            <button class="delete-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="post-content">
+          ${comment}
+        </div>
+        <div class="comment-list">
+          <div class="new-comment-section">
+            <div>新コメント入力</div>
+            <textarea class="new-comment-text" rows="2" style="width:90%;margin:8px 0;"></textarea>
+            <button class="comment-post-btn">投稿</button>
+          </div>
+        </div>
+      `;
+      postList.prepend(postBox);
+      document.getElementById('newPostComment').value = '';
+    });
+
+    // 新コメント入力の投稿ボタン
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('comment-post-btn')) {
+        const commentSection = e.target.closest('.new-comment-section');
+        const commentText = commentSection.querySelector('.new-comment-text').value;
+        const commentList = commentSection.parentElement;
+        const commentBox = document.createElement('div');
+        commentBox.className = 'comment-box';
+        commentBox.innerHTML = `
+          <div class="image-box comment-user-image"><img src='https://randomuser.me/api/portraits/men/32.jpg' style='width:100%;height:100%;object-fit:cover;border-radius:4px;'></div>
+          <span class="comment-nickname">山田 太郎</span>
+          <span class="comment-text">${commentText}</span>
+          <button class="comment-delete">x</button>
+        `;
+        commentList.insertBefore(commentBox, commentSection);
+        commentSection.querySelector('.new-comment-text').value = '';
+      }
+    });
+  </script>
 </body>
 </html> 
